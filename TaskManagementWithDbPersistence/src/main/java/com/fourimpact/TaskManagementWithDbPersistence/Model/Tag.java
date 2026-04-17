@@ -26,4 +26,15 @@ public class Tag {
     public Tag(String name) {
         this.name = name;
     }
+
+    // Getter and Setters
+
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

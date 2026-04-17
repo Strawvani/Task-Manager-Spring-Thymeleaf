@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 @Table(name = "task")
 public class Task {
 
+    // Fields
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -33,4 +34,14 @@ public class Task {
     @CreationTimestamp
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
+
+    // Constructors
+    public Task() {}
+
+    public Task(String title, String description, TaskStatus status, TaskPriority priority) {
+        this.title = title;
+        this.description = description;
+        this.status = status;
+        this.priority = priority;
+    }
 }

@@ -14,15 +14,19 @@ public class TaskResponse {
     private TaskStatus status;
     private TaskPriority priority;
     private LocalDateTime createdAt;
+    private String username;
+    private String categoryName;
 
     // Constructor
-    public TaskResponse(Long id, String title, String description, TaskStatus status, TaskPriority priority, LocalDateTime createdAt) {
+    public TaskResponse(Long id, String title, String description, TaskStatus status, TaskPriority priority, LocalDateTime createdAt, String username, String categoryName) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.status = status;
         this.priority = priority;
         this.createdAt = createdAt;
+        this.username = username;
+        this.categoryName = categoryName;
     }
 
     // Getters
@@ -50,4 +54,8 @@ public class TaskResponse {
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
+
+    public String getUsername() {return username;}
+
+    public String getCategoryName() {return categoryName;}
 }

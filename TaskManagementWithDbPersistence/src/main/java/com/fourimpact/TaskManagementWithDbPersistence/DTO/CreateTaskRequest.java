@@ -12,9 +12,9 @@ public class CreateTaskRequest {
     private TaskStatus status;
     private TaskPriority priority;
 
-    private Long userID;
-    private Long categoryID;
-    private List<Long> tag_ID;
+    private Long userId;
+    private Long categoryId;
+    private List<Long> tag_Id;
 
     // Getters and Setters
     public String getTitle() {
@@ -49,27 +49,27 @@ public class CreateTaskRequest {
         this.priority = priority;
     }
 
-    public Long getUserID() {
-        return userID;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUserID(Long userID) {
-        this.userID = userID;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
-    public Long getCategoryID() {
-        return categoryID;
+    public Long getCategoryId() {
+        return categoryId;
     }
 
-    public void setCategoryID(Long categoryID) {
-        this.categoryID = categoryID;
+    public void setCategoryId(Long categoryID) {
+        this.categoryId = categoryID;
     }
 
     public List<Long> getTag_ID() {
-        return tag_ID;
+        return tag_Id;
     }
 
     public void setTag_ID(List<Long> tag_ID) {
-        this.tag_ID = tag_ID;
+        this.tag_Id = tag_ID;
     }
 }

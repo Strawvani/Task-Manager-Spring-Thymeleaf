@@ -14,6 +14,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.DeleteMapping;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -79,6 +80,45 @@ public class TaskService {
     public Page<TaskResponse> getTasksByUserId(Long Id, Pageable pageable){
         return taskRepository.findByUser_Id(Id,pageable).map(this::toResponse);
     }
+
+    // Update
+    public TaskResponse updateTask(Long Id, CreateTaskRequest request){
+        Task task = taskRepository.findById(Id).orElseThrow(
+                () -> new ResourceNotFoundException("task", Id)
+        );
+
+
+        if(request.getUserId() != null){
+            User user = userRepository.findById(request.getUserId()).orElseThrow(
+                    () -> new ResourceNotFoundException("user", request.getUserId()));
+            task.setUser(user);
+        }
+
+        if (request.getCategoryId() != null){
+            Category category = categoryRepository.findById(request.getCategoryId()).orElseThrow(
+                    () -> new ResourceNotFoundException("category", request.getCategoryId()));
+            task.setCategory(category);
+        }
+
+        if (request.getTitle() != null){
+            task.setTitle(request.getTitle());
+        }
+
+        if (request.getDescription() != null){
+            task.setDescription(request.getDescription());
+        }
+
+        if (request.getStatus() != null){
+            task.setStatus(request.getStatus());
+        }
+
+        if (request.getPriority() != null){
+            task.setPriority(request.getPriority());
+        }
+
+        return toResponse(taskRepository.save(task));
+    }
+
 
     // Helper
     public TaskResponse toResponse(Task task){

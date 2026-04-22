@@ -38,9 +38,14 @@ public class TaskController {
         return ResponseEntity.ok(taskService.getAllTasks(pageable));
     }
 
-    @GetMapping("/status")
+    @GetMapping("/{id}")
+    public ResponseEntity<TaskResponse> getTaskById(@PathVariable Long id){
+        return ResponseEntity.ok(taskService.getTaskById(id));
+    }
+
+    @GetMapping("/status/{status}")
     public ResponseEntity<Page<TaskResponse>> getTasksByStatus(
-            @RequestParam String status,
+            @PathVariable String status,
             @RequestParam (defaultValue = "0") int page,
             @RequestParam (defaultValue = "10") int size){
         Pageable pageable = PageRequest.of(page, size);
@@ -59,14 +64,16 @@ public class TaskController {
         return ResponseEntity.ok(taskService.getTasksByUserId(id,pageable));
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<TaskResponse> getTaskById(@PathVariable Long id){
-        return ResponseEntity.ok(taskService.getTaskById(id));
+    // Update
+    @PutMapping("/{id}")
+    public ResponseEntity<TaskResponse> updateTask(@PathVariable Long id, @RequestBody CreateTaskRequest request){
+        return ResponseEntity.ok(taskService.updateTask(id, request));
     }
 
-    // Update
-    @PutMapping()
-    public ResponseEntity<TaskResponse> updateTask(@RequestParam Long id, @RequestBody CreateTaskRequest request){
-        return ResponseEntity.ok(taskService.updateTask(id, request));
+    // Delete
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteTask(@PathVariable Long id){
+        taskService.deleteTask(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }

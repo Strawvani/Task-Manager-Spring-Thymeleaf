@@ -119,6 +119,13 @@ public class TaskService {
         return toResponse(taskRepository.save(task));
     }
 
+    // Delete
+    public void deleteTask(Long Id){
+        Task task = taskRepository.findById(Id).orElseThrow(
+                () -> new ResourceNotFoundException("task", Id)
+        );
+        taskRepository.delete(task);
+    }
 
     // Helper
     public TaskResponse toResponse(Task task){

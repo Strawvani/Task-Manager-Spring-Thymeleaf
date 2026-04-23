@@ -8,6 +8,8 @@ public class TaskManagementWithDbPersistenceApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(TaskManagementWithDbPersistenceApplication.class, args);
+
+
 	}
 
 }

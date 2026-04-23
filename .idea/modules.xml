@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/TaskManagementWithDbPersistence.iml" filepath="$PROJECT_DIR$/.idea/TaskManagementWithDbPersistence.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Task-Manager-API-JPA.iml" filepath="$PROJECT_DIR$/.idea/Task-Manager-API-JPA.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TaskManagementWithDbPersistence/TaskManagementWithDbPersistence.iml" filepath="$PROJECT_DIR$/TaskManagementWithDbPersistence/TaskManagementWithDbPersistence.iml" />
     </modules>
   </component>
 </project>

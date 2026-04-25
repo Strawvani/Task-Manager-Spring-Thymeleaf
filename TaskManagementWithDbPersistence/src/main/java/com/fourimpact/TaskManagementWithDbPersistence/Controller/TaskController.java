@@ -11,8 +11,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/api/tasks")
 public class TaskController {
@@ -35,7 +33,7 @@ public class TaskController {
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size){
         Pageable pageable = PageRequest.of(page, size);
-        return ResponseEntity.ok(taskService.getAllTasks(pageable));
+        return ResponseEntity.ok(taskService.getAllTasksPage(pageable));
     }
 
     @GetMapping("/{id}")

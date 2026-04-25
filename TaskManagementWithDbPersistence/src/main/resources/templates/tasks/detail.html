@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Task Detail</title>
+</head>
+
+<body>
+
+<h1>Task Detail ID: <span th:text="${task.id}">N/A</span> </h1>
+<h2> Task Title: <span th:text="${task.title}">N/A</span> </h2>
+<h2> Task Description: <span th:text="${task.description}">N/A</span> </h2>
+<h2> Task Status: <span th:text="${task.status.displayName}">N/A</span> </h2>
+<h2> Task Priority: <span th:text="${task.priority.displayName}">N/A</span> </h2>
+<a href="/tasks">Back to List</a>
+</body>
+
+</html>
+
+

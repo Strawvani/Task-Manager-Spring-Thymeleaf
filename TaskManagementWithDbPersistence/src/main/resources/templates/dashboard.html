@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+</head>
+
+<h1> <b>Dashboard</b></h1>
+
+<table>
+    <tr>
+        <td>ID</td>
+        <td>Title</td>
+        <td>Status</td>
+        <td>Priority</td>
+    </tr>
+    <tr th:each="task : ${tasks}">
+        <td><a th:href="@{/tasks/{id}(id=${task.id})}" th:text="${task.id}">N/A</a></td>
+        <td th:text="${task.title}">N/A</td>
+        <td th:text="${task.status}">N/A</td>
+        <td th:text="${task.priority}">N/A</td>
+    </tr>
+</table>
+
+</html>

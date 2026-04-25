@@ -14,9 +14,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.DeleteMapping;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -56,13 +57,22 @@ public class TaskService {
     }
 
     // Read
-    @Transactional
+    @Transactional(readOnly = true)
+    public Map<TaskStatus, Long> countByStatus(){
+        Map<TaskStatus, Long> result = new LinkedHashMap<>();
+        for (TaskStatus status : TaskStatus.values()) {
+            result.put(status, taskRepository.countByStatus(status));
+        }
+        return result;
+    }
+
+    @Transactional(readOnly = true)
     public List<TaskResponse> getAllTasksList(){
         return taskRepository.findAll().stream().map(this::toResponse).collect(Collectors.toList());
     }
 
     @Transactional(readOnly = true)
-    public Page<TaskResponse> getAllTasks(Pageable pageable){
+    public Page<TaskResponse> getAllTasksPage(Pageable pageable){
         return taskRepository.findAll(pageable).map(this::toResponse);
 
     }

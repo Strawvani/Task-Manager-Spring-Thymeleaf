@@ -3,12 +3,17 @@ package com.fourimpact.TaskManagementWithDbPersistence.Enums;
 import com.fasterxml.jackson.annotation.JsonCreator;
 
 public enum TaskStatus {
-    TODO,
-    IN_PROGRESS,
-    DONE;
+    IN_PROGRESS("In Progress"),
+    TODO("To Do"),
+    DONE("Done");
 
-    @JsonCreator
-    public static TaskStatus fromString(String value) {
-        return TaskStatus.valueOf(value.toUpperCase().replace(" ", "_"));
+    private final String displayName;
+
+    TaskStatus(String displayName) {
+        this.displayName = displayName;
+    }
+
+    public String getDisplayName() {
+        return displayName;
     }
 }

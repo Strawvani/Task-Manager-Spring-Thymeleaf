@@ -21,4 +21,6 @@ public interface TaskRepository extends JpaRepository<Task,Long> {
     Page<Task> findByUserPaginated(Long userId, Pageable pageable);
 
     Page<Task> findByUser_Id(Long userID, Pageable pageable);
+
+    List<Task> getAllBy();
 }

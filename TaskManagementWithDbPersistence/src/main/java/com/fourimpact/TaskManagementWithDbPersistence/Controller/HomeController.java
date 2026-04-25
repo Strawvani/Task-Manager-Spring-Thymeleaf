@@ -16,8 +16,14 @@ public class HomeController {
 
     @GetMapping("/home")
     public String home(Model model) {
-        model.addAttribute("message", "Hello, Im so sleepy!");
+        model.addAttribute("message", "Hello, Thymeleaf!");
         return "index";
+    }
+
+    @GetMapping("/list")
+    public String tasksList(Model model){
+        model.addAttribute("tasks",taskService.getAllTasksList());
+        return "tasks/list";
     }
 
 }

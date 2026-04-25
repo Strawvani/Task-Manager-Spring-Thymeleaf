@@ -56,6 +56,11 @@ public class TaskService {
     }
 
     // Read
+    @Transactional
+    public List<TaskResponse> getAllTasksList(){
+        return taskRepository.findAll().stream().map(this::toResponse).collect(Collectors.toList());
+    }
+
     @Transactional(readOnly = true)
     public Page<TaskResponse> getAllTasks(Pageable pageable){
         return taskRepository.findAll(pageable).map(this::toResponse);

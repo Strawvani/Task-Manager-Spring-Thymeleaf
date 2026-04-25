@@ -20,12 +20,11 @@
          <tr th:each="task : ${tasks}">
              <td><a th:href="@{/tasks/{id}(id=${task.id})}" th:text="${task.id}">N/A</a></td>
              <td th:text="${task.title}"></td>
-             <td th:text="${task.status}"></td>
-             <td th:text="${task.priority}"></td>
+             <td th:text="${task.status.displayName}"></td>
+             <td th:text="${task.priority.displayName}"></td>
          </tr>
-
     </table>
-
+<a href="/tasks/dashboard">Task Dashboard</a>
 </body>
 
 </html>

@@ -6,21 +6,20 @@
     <title>Dashboard</title>
 </head>
 
+<body>
+
 <h1> <b>Dashboard</b></h1>
 
 <table>
     <tr>
-        <td>ID</td>
-        <td>Title</td>
         <td>Status</td>
-        <td>Priority</td>
+        <td>Count</td>
     </tr>
-    <tr th:each="task : ${tasks}">
-        <td><a th:href="@{/tasks/{id}(id=${task.id})}" th:text="${task.id}">N/A</a></td>
-        <td th:text="${task.title}">N/A</td>
-        <td th:text="${task.status}">N/A</td>
-        <td th:text="${task.priority}">N/A</td>
+    <tr th:each="entry : ${statusCount}">
+        <td th:text="${entry.key.displayName}"></td>
+        <td th:text="${entry.value}"></td>
     </tr>
 </table>
+<a href="/tasks">Back to List</a></body>
 
 </html>

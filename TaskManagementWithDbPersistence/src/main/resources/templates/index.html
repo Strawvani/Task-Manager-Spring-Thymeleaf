@@ -18,8 +18,10 @@
 
 <!-- th:replace replaces the host element entirely -->
 <header th:replace="~{fragments/nav :: navbar}"></header>
+
 <h1 th:text="${message}">Default heading</h1>
 
+<footer th:replace="~{fragments/footer :: footer}"></footer>
 </body>
 
 </html>

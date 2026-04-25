@@ -8,6 +8,7 @@
 
 <body>
 
+<header th:replace="~{fragments/nav :: navbar}"></header>
 <h1> <b>Dashboard</b></h1>
 
 <table>
@@ -20,6 +21,8 @@
         <td th:text="${entry.value}"></td>
     </tr>
 </table>
-<a href="/tasks">Back to List</a></body>
+
+<footer th:replace="~{fragments/footer :: footer}"></footer>
+</body>
 
 </html>

@@ -4,17 +4,12 @@
 
 <body>
 
-
-
-<!-- Define the navbar fragment -->
 <nav th:fragment="navbar">
-    <div class="nav-container">
-        <a th:href="@{/}" class="nav-brand">TaskManager</a>
-        <ul class="nav-links">
-            <li><a th:href="@{/tasks}">Tasks</a></li>
-            <li><a th:href="@{/tasks/new}">New Task</a></li>
-        </ul>
-    </div>
+   <a th:href="@{/home}">Task Management</a>
+    <ul>
+       <li> <a th:href="@{/tasks}">Tasks</a></li>
+        <li> <a th:href="@{/tasks/dashboard}">Dashboard</a></li>
+    </ul>
 </nav>
 
 </body>

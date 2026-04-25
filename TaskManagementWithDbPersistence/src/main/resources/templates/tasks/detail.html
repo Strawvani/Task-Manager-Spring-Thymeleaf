@@ -8,12 +8,16 @@
 
 <body>
 
+<header th:replace="~{fragments/nav :: navbar}"></header>
+
 <h1>Task Detail ID: <span th:text="${task.id}">N/A</span> </h1>
 <h2> Task Title: <span th:text="${task.title}">N/A</span> </h2>
 <h2> Task Description: <span th:text="${task.description}">N/A</span> </h2>
 <h2> Task Status: <span th:text="${task.status.displayName}">N/A</span> </h2>
 <h2> Task Priority: <span th:text="${task.priority.displayName}">N/A</span> </h2>
-<a href="/tasks">Back to List</a>
+
+<footer th:replace="~{fragments/footer :: footer}"></footer>
+
 </body>
 
 </html>

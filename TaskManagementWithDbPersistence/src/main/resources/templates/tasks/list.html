@@ -18,12 +18,14 @@
             <th>Title</th>
             <th>Status</th>
             <th>Priority</th>
+            <th>Edit</th>
         </tr>
          <tr th:each="task : ${tasks}">
              <td><a th:href="@{/tasks/{id}(id=${task.id})}" th:text="${task.id}">N/A</a></td>
              <td th:text="${task.title}"></td>
              <td th:text="${task.status.displayName}"></td>
              <td th:text="${task.priority.displayName}"></td>
+             <td> <a th:href="@{/tasks/{id}/edit(id=${task.id})}">Edit</a></td>
          </tr>
     </table>
 

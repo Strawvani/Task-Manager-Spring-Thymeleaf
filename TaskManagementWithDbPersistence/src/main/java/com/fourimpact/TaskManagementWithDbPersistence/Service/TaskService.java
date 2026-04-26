@@ -56,6 +56,10 @@ public class TaskService {
         return toResponse(taskRepository.save(task));
     }
 
+    public Task save(Task task){
+        return taskRepository.save(task);
+    }
+
     // Read
     @Transactional(readOnly = true)
     public Map<TaskStatus, Long> countByStatus(){
@@ -67,7 +71,7 @@ public class TaskService {
     }
 
     @Transactional(readOnly = true)
-    public List<TaskResponse> getAllTasksList(){
+    public List<TaskResponse>   getAllTasksList(){
         return taskRepository.findAll().stream().map(this::toResponse).collect(Collectors.toList());
     }
 

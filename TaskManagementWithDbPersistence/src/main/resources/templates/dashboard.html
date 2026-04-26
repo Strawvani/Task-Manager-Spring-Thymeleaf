@@ -4,23 +4,30 @@
 <head>
     <meta charset="UTF-8">
     <title>Dashboard</title>
+    <link th:href="@{/css/main.css}" rel="stylesheet">
 </head>
 
 <body>
 
 <header th:replace="~{fragments/nav :: navbar}"></header>
-<h1> <b>Dashboard</b></h1>
 
-<table>
-    <tr>
-        <td>Status</td>
-        <td>Count</td>
-    </tr>
-    <tr th:each="entry : ${statusCount}">
-        <td th:text="${entry.key.displayName}"></td>
-        <td th:text="${entry.value}"></td>
-    </tr>
-</table>
+<main class="container">
+    <div style="max-width: 600px; margin: 2rem auto; background: white; padding: 2rem; border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.08);">
+        <h1>Dashboard</h1>
+        <hr style="margin: 1rem 0;">
+
+        <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+                <th style="font-weight: 600; padding: 0.5rem 1rem 0.5rem 0; text-align: left;">Status</th>
+                <th style="font-weight: 600; padding: 0.5rem 0; text-align: left;">Count</th>
+            </tr>
+            <tr th:each="entry : ${statusCount}">
+                <td style="padding: 0.5rem 1rem 0.5rem 0;" th:text="${entry.key.displayName}"></td>
+                <td style="padding: 0.5rem 0;" th:text="${entry.value}"></td>
+            </tr>
+        </table>
+    </div>
+</main>
 
 <footer th:replace="~{fragments/footer :: footer}"></footer>
 </body>

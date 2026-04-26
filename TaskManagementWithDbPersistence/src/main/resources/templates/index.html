@@ -7,8 +7,8 @@
 <head>
 
     <meta charset="UTF-8">
-
     <title>Task Manager</title>
+    <link th:href="@{/css/main.css}" rel="stylesheet">
 
 </head>
 
@@ -19,7 +19,9 @@
 <!-- th:replace replaces the host element entirely -->
 <header th:replace="~{fragments/nav :: navbar}"></header>
 
+<main class="container">
 <h1 th:text="${message}">Default heading</h1>
+</main>
 
 <footer th:replace="~{fragments/footer :: footer}"></footer>
 </body>

@@ -1,1 +1,462 @@
-.input-error { border: 2px solid red; }
+/* src/main/resources/static/css/main.css */
+
+
+
+:root {
+
+    /* Colour palette */
+
+    --color-primary:    #1F497D;
+
+    --color-secondary:  #4A90D9;
+
+    --color-accent:     #E8F5E9;
+
+    --color-danger:     #E53935;
+
+    --color-warning:    #FB8C00;
+
+    --color-text:       #212121;
+
+    --color-muted:      #757575;
+
+    --color-bg:         #F5F5F5;
+
+    --color-white:      #FFFFFF;
+
+
+
+    /* Spacing scale */
+
+    --space-xs:   0.25rem;
+
+    --space-sm:   0.5rem;
+
+    --space-md:   1rem;
+
+    --space-lg:   1.5rem;
+
+    --space-xl:   2rem;
+
+
+
+    /* Typography */
+
+    --font-body:  'Segoe UI', system-ui, sans-serif;
+
+    --font-code:  'Cascadia Code', 'Consolas', monospace;
+
+    --font-size-base: 1rem;
+
+    --border-radius: 6px;
+
+}
+
+
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+
+
+body {
+
+    font-family: var(--font-body);
+
+    font-size: var(--font-size-base);
+
+    color: var(--color-text);
+
+    background-color: var(--color-bg);
+
+    line-height: 1.6;
+
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+/* ── Navbar using Flexbox ─────────────────────────── */
+
+.nav-container {
+
+    display: flex;
+
+    justify-content: space-between;  /* brand left, links right */
+
+    align-items: center;             /* vertically centred */
+
+    padding: var(--space-md) var(--space-xl);
+
+    background-color: var(--color-primary);
+
+    color: var(--color-white);
+
+}
+
+.nav-home{
+
+    color: var(--color-white);
+
+    text-decoration: none;
+
+    font-weight: 600;
+
+}
+
+.nav-home:hover{
+
+    color: var(--color-secondary);
+
+}
+
+.nav-links {
+
+    display: flex;
+
+    gap: var(--space-md);
+
+    list-style: none;
+
+}
+
+
+
+.nav-links a {
+
+    color: var(--color-white);
+
+    text-decoration: none;
+
+    font-weight: 600;
+
+}
+
+
+
+.nav-links a:hover {
+
+    color: var(--color-secondary);
+
+}
+
+/* ── Task card grid ──────────────────────────────── */
+
+.task-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+
+    gap: var(--space-lg);
+
+    padding: var(--space-xl);
+
+}
+
+
+
+.task-card {
+
+    background: var(--color-white);
+
+    border-radius: var(--border-radius);
+
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+
+    padding: var(--space-lg);
+
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+}
+
+
+
+.task-card:hover {
+
+    transform: translateY(-3px);
+
+    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+
+}
+
+
+
+.task-card.done {
+
+    opacity: 0.6;
+
+    text-decoration: line-through;
+
+}
+
+/* ── Mobile-first base ──────────────────────────── */
+
+.container {
+
+    width: 100%;
+
+    padding: 0 var(--space-md);
+
+}
+
+
+
+/* ── Tablet (≥ 768px) ───────────────────────────── */
+
+@media (min-width: 768px) {
+
+    .container {
+
+        max-width: 960px;
+
+        margin: 0 auto;
+
+    }
+
+
+
+    /* Stack nav links horizontally on tablet+ */
+
+    .nav-links {
+
+        flex-direction: row;
+
+    }
+
+}
+
+
+
+/* ── Desktop (≥ 1200px) ─────────────────────────── */
+
+@media (min-width: 1200px) {
+
+    .container {
+
+        max-width: 1200px;
+
+    }
+
+}
+
+
+
+/* ── Mobile: hide nav links, show menu button ───── */
+
+@media (max-width: 767px) {
+
+    .nav-links {
+
+        display: none;          /* toggled by JavaScript */
+
+        flex-direction: column;
+
+        width: 100%;
+
+    }
+
+
+
+    .nav-links.open {
+
+        display: flex;
+
+    }
+
+
+
+    .menu-toggle {
+
+        display: block;
+
+        cursor: pointer;
+
+        font-size: 1.5rem;
+
+        background: none;
+
+        border: none;
+
+        color: var(--color-white);
+
+    }
+
+}
+
+
+
+/* Hide the toggle on larger screens */
+
+@media (min-width: 768px) {
+
+    .menu-toggle { display: none; }
+
+}
+
+/* ── Form styles ─────────────────────────────────── */
+
+.task-form {
+
+    background: var(--color-white);
+
+    padding: var(--space-xl);
+
+    border-radius: var(--border-radius);
+
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+
+    max-width: 600px;
+
+    margin: var(--space-xl) auto;
+
+}
+
+
+
+.form-group {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: var(--space-xs);
+
+    margin-bottom: var(--space-md);
+
+}
+
+
+
+.form-group label {
+
+    font-weight: 600;
+
+    color: var(--color-text);
+
+}
+
+
+
+.form-group input,
+
+.form-group textarea,
+
+.form-group select {
+
+    padding: var(--space-sm) var(--space-md);
+
+    border: 1px solid #ccc;
+
+    border-radius: var(--border-radius);
+
+    font-size: var(--font-size-base);
+
+    font-family: var(--font-body);
+
+    transition: border-color 0.2s;
+
+}
+
+
+
+.form-group input:focus,
+
+.form-group textarea:focus,
+
+.form-group select:focus {
+
+    outline: none;
+
+    border-color: var(--color-secondary);
+
+    box-shadow: 0 0 0 3px rgba(74,144,217,0.15);
+
+}
+
+
+
+/* Error state */
+
+.input-error {
+
+    border-color: var(--color-danger) !important;
+
+}
+
+
+
+.error-text {
+
+    color: var(--color-danger);
+
+    font-size: 0.875rem;
+
+}
+
+
+
+/* ── Buttons ─────────────────────────────────────── */
+
+.btn {
+
+    display: inline-block;
+
+    padding: var(--space-sm) var(--space-lg);
+
+    border: none;
+
+    border-radius: var(--border-radius);
+
+    cursor: pointer;
+
+    font-size: var(--font-size-base);
+
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition: background-color 0.2s, transform 0.1s;
+
+}
+
+
+
+.btn:active { transform: scale(0.97); }
+
+
+
+.btn-primary {
+
+    background-color: var(--color-primary);
+
+    color: var(--color-white);
+
+}
+
+.btn-primary:hover { background-color: var(--color-secondary); }
+
+
+
+.btn-secondary {
+
+    background-color: #e0e0e0;
+
+    color: var(--color-text);
+
+}
+
+.btn-secondary:hover { background-color: #bdbdbd; }
+
+
+
+.btn-danger {
+
+    background-color: var(--color-danger);
+
+    color: var(--color-white);
+
+}

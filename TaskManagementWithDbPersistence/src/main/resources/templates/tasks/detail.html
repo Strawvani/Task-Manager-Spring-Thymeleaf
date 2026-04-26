@@ -4,22 +4,42 @@
 <head>
     <meta charset="UTF-8">
     <title>Task Detail</title>
+    <link th:href="@{/css/main.css}" rel="stylesheet">
 </head>
 
 <body>
 
 <header th:replace="~{fragments/nav :: navbar}"></header>
 
-<h1>Task Detail ID: <span th:text="${task.id}">N/A</span> </h1>
-<h2> Task Title: <span th:text="${task.title}">N/A</span> </h2>
-<h2> Task Description: <span th:text="${task.description}">N/A</span> </h2>
-<h2> Task Status: <span th:text="${task.status.displayName}">N/A</span> </h2>
-<h2> Task Priority: <span th:text="${task.priority.displayName}">N/A</span> </h2>
+<<main class="container">
+    <div style="max-width: 600px; margin: 2rem auto; background: white; padding: 2rem; border-radius: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.08);">
+        <h1 th:text="${task.title}">Task Title</h1>
+        <hr style="margin: 1rem 0;">
+
+        <table style="width: 100%; border-collapse: collapse;">
+            <tr>
+                <td style="font-weight: 600; padding: 0.5rem 1rem 0.5rem 0; width: 140px;">Description</td>
+                <td th:text="${task.description}">N/A</td>
+            </tr>
+            <tr>
+                <td style="font-weight: 600; padding: 0.5rem 1rem 0.5rem 0;">Status</td>
+                <td th:text="${task.status.displayName}">N/A</td>
+            </tr>
+            <tr>
+                <td style="font-weight: 600; padding: 0.5rem 1rem 0.5rem 0;">Priority</td>
+                <td th:text="${task.priority.displayName}">N/A</td>
+            </tr>
+        </table>
+
+        <div style="margin-top: 1.5rem;">
+            <a th:href="@{/tasks/{id}/edit(id=${task.id})}" class="btn btn-secondary">Edit</a>
+            <a th:href="@{/tasks}" class="btn btn-secondary">Back</a>
+        </div>
+    </div>
+</main>
 
 <footer th:replace="~{fragments/footer :: footer}"></footer>
 
 </body>
 
 </html>
-
-

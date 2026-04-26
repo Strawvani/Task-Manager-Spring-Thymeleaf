@@ -2,35 +2,32 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-
     <meta charset="UTF-8">
     <title>Task List</title>
-
+    <link th:href="@{/css/main.css}" rel="stylesheet">
 </head>
 
 <body>
 
 <header th:replace="~{fragments/nav :: navbar}"></header>
 
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>Title</th>
-            <th>Status</th>
-            <th>Priority</th>
-            <th>Edit</th>
-        </tr>
-         <tr th:each="task : ${tasks}">
-             <td><a th:href="@{/tasks/{id}(id=${task.id})}" th:text="${task.id}">N/A</a></td>
-             <td th:text="${task.title}"></td>
-             <td th:text="${task.status.displayName}"></td>
-             <td th:text="${task.priority.displayName}"></td>
-             <td> <a th:href="@{/tasks/{id}/edit(id=${task.id})}">Edit</a></td>
-         </tr>
-    </table>
+<main class="container">
+    <h2>Tasks</h2>
+    <a th:href="@{/tasks/new}" class="btn btn-primary">New Task</a>
+
+    <div class="task-grid">
+        <div class="task-card" th:each="task : ${tasks}"
+             th:classappend="${task.status.name() == 'DONE'} ? 'done' : ''">
+            <h3 th:text="${task.title}">Title</h3>
+            <p th:text="${task.status.displayName}">Status</p>
+            <p th:text="${task.priority.displayName}">Priority</p>
+            <a th:href="@{/tasks/{id}(id=${task.id})}" class="btn btn-secondary">View</a>
+            <a th:href="@{/tasks/{id}/edit(id=${task.id})}" class="btn btn-secondary">Edit</a>
+        </div>
+    </div>
+</main>
 
 <footer th:replace="~{fragments/footer :: footer}"></footer>
 
 </body>
-
 </html>

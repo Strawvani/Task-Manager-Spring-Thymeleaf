@@ -3,6 +3,8 @@ package com.fourimpact.TaskManagementWithDbPersistence.Model;
 import com.fourimpact.TaskManagementWithDbPersistence.Enums.TaskPriority;
 import com.fourimpact.TaskManagementWithDbPersistence.Enums.TaskStatus;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
@@ -19,9 +21,11 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "Title is required")
     @Column(name = "title",nullable = false,length = 200)
     private String title;
 
+    @Size(max = 500 , message = "Description must be less than 500 characters")
     @Column(name = "description", columnDefinition = "NVARCHAR(MAX)")
     private String description;
 

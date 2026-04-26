@@ -3,8 +3,10 @@ package com.fourimpact.TaskManagementWithDbPersistence.Controller;
 import com.fourimpact.TaskManagementWithDbPersistence.Enums.TaskPriority;
 import com.fourimpact.TaskManagementWithDbPersistence.Model.Task;
 import com.fourimpact.TaskManagementWithDbPersistence.Service.TaskService;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -55,19 +57,28 @@ public class TaskWebController {
 
 // Handle form submission
     @PostMapping
-    public String createTask(@ModelAttribute Task task) {
+    public String createTask(@Valid @ModelAttribute Task task, BindingResult result, Model model) {
+        if (result.hasErrors()){
+            model.addAttribute("pageTitle", "New Task");
+            return "tasks/form";
+        }
         taskService.save(task);
         return "redirect:/tasks";  // Post-Redirect-Get pattern
     }
 
     @GetMapping("/{id}/edit")
     public String editTaskForm(@PathVariable Long id, Model model) {
+        model.addAttribute("pageTitle", "Edit Task");
         model.addAttribute("task", taskService.getTaskById(id));
         return "tasks/form";
     }
 
     @PostMapping("/{id}")
-    public String updateTask(@PathVariable Long id, @ModelAttribute Task task) {
+    public String updateTask(@Valid @ModelAttribute Task task, BindingResult result, @PathVariable Long id, Model model) {
+        if(result.hasErrors()){
+            model.addAttribute("pageTitle", "Edit Task");
+            return "tasks/form";
+        }
         task.setId(id);
         taskService.save(task);
         return "redirect:/tasks";

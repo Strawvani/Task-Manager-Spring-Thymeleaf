@@ -10,6 +10,8 @@
 
     --color-secondary:  #4A90D9;
 
+    --color-tertiary: #00ed33;
+
     --color-accent:     #E8F5E9;
 
     --color-danger:     #E53935;
@@ -77,6 +79,49 @@ body {
 
 main {
     flex: 1;
+}
+
+.home-container{
+    padding: var(--space-md);
+    margin: var(--space-sm);
+}
+
+.home-container h1{
+    display: inline;
+}
+
+.thymeleaf-icon{
+    width: 2rem;
+    height: 2rem;
+    margin-right: var(--space-sm);
+}
+
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--space-md);
+    width: 100%;
+    height: 500px;
+}
+
+.center-headers {
+    border: 3px solid var( --color-primary);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.center-headers h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid var(--color-primary);
+    padding: 10px;
+    background-color: var(--color-accent);
+}
+
+.center-headers h1:nth-child(-n+3){
+    background-color: var(--color-tertiary);
 }
 
 /* ── Navbar using Flexbox ─────────────────────────── */

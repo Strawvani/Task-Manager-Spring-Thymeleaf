@@ -19,8 +19,31 @@
 <!-- th:replace replaces the host element entirely -->
 <header th:replace="~{fragments/nav :: navbar}"></header>
 
-<main class="container">
+<main class="home-container">
+<img class="thymeleaf-icon" src="https://kongkiat.gallerycdn.vsassets.io/extensions/kongkiat/thymeleaf-snippets/1.0.0/1676025937118/Microsoft.VisualStudio.Services.Icons.Default">
 <h1 th:text="${message}">Default heading</h1>
+    <div>
+        <p>This is the home page.</p>
+    </div>
+
+<div class="center">
+    <div class="center-headers">
+            <h1>Column 1</h1>
+            <h1>Column 2</h1>
+            <h1>Column 3</h1>
+        <h1>This Div must be center</h1>
+        <h1>This Div must be center</h1>
+        <h1>This Div must be center</h1>
+        <h1>This Div must be center</h1>
+        <h1>This Div must be center</h1>
+        <h1>This Div must be center</h1>
+        <h1>This Div must be center</h1>
+        <h1>This Div must be center</h1>
+        <h1>This Div must be center</h1>
+    </div>
+
+
+</div>
 </main>
 
 <footer th:replace="~{fragments/footer :: footer}"></footer>

@@ -4,6 +4,7 @@ import com.fourimpact.TaskManagementWithDbPersistence.Enums.TaskPriority;
 import com.fourimpact.TaskManagementWithDbPersistence.Model.Task;
 import com.fourimpact.TaskManagementWithDbPersistence.Service.TaskService;
 import jakarta.validation.Valid;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -73,14 +74,24 @@ public class TaskWebController {
         return "tasks/form";
     }
 
-    @PostMapping("/{id}")
+    @PutMapping("/{id}")
     public String updateTask(@Valid @ModelAttribute Task task, BindingResult result, @PathVariable Long id, Model model) {
-        if(result.hasErrors()){
+        if (result.hasErrors()) {
             model.addAttribute("pageTitle", "Edit Task");
             return "tasks/form";
         }
         task.setId(id);
         taskService.save(task);
         return "redirect:/tasks";
+    }
+
+    // JS
+
+    @PatchMapping("/{id}/complete")
+    @ResponseBody
+    public ResponseEntity<Void> markComplete(@PathVariable Long id) {
+        taskService.markComplete(id);
+        return ResponseEntity.ok().build();
+
     }
 }

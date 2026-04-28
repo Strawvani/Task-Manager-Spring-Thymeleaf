@@ -12,22 +12,31 @@
 <header th:replace="~{fragments/nav :: navbar}"></header>
 
 <main class="container">
-    <h2>Tasks</h2>
-    <a th:href="@{/tasks/new}" class="btn btn-primary">New Task</a>
+
+    <h2 class="page-title" th:text="${pageTitle}">Tasks List</h2>
+
+    <input type="text" id="task-search" placeholder="Search tasks...">
 
     <div class="task-grid">
         <div class="task-card" th:each="task : ${tasks}"
              th:classappend="${task.status.name() == 'DONE'} ? 'done' : ''">
-            <h3 th:text="${task.title}">Title</h3>
+            <h3 class="task-title" th:text="${task.title}">Title</h3>
             <p th:text="${task.status.displayName}">Status</p>
             <p th:text="${task.priority.displayName}">Priority</p>
             <a th:href="@{/tasks/{id}(id=${task.id})}" class="btn btn-secondary">View</a>
             <a th:href="@{/tasks/{id}/edit(id=${task.id})}" class="btn btn-secondary">Edit</a>
+            <button class="btn btn-complete"
+                    th:attr="data-task-id=${task.id}"
+                    th:unless="${task.status.name() == 'DONE'}">
+                Mark Complete
+            </button>
         </div>
     </div>
 </main>
 
 <footer th:replace="~{fragments/footer :: footer}"></footer>
+
+<script th:src="@{/js/main.js}" defer></script>
 
 </body>
 </html>

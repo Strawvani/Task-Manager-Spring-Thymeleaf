@@ -138,6 +138,13 @@ public class TaskService {
         return toResponse(taskRepository.save(task));
     }
 
+    public void markComplete(Long id) {
+        Task task = taskRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Task not found"));
+        task.setStatus(TaskStatus.DONE); // whatever your enum is called
+        taskRepository.save(task);
+    }
+
     // Delete
     public void deleteTask(Long Id){
         Task task = taskRepository.findById(Id).orElseThrow(

@@ -6,6 +6,9 @@
 
 <nav th:fragment="navbar" class="nav-container">
    <a class="nav-home" th:href="@{/home}">Task Management</a>
+
+    <button class="menu-toggle" aria-expanded="false">&#9776;</button>
+
     <ul class="nav-links">
        <li> <a th:href="@{/tasks}">Tasks</a></li>
         <li> <a th:href="@{/tasks/new}">New Task</a></li>

@@ -21,8 +21,18 @@
         <div class="task-card" th:each="task : ${tasks}"
              th:classappend="${task.status.name() == 'DONE'} ? 'done' : ''">
             <h3 class="task-title" th:text="${task.title}">Title</h3>
-            <p th:text="${task.status.displayName}">Status</p>
-            <p th:text="${task.priority.displayName}">Priority</p>
+            <div class="badge-container">
+                 <span class="badge"
+                       th:classappend="${task.status.name() == 'DONE'} ? 'badge-done' :
+                     (${task.status.name() == 'IN_PROGRESS'} ? 'badge-progress' : 'badge-todo')"
+                       th:text="${task.status.displayName}">
+            </span>
+                <span class="priority-badge"
+                      th:classappend="${task.priority.name() == 'LOW'} ? 'badge-low' :
+                     (${task.priority.name() == 'MEDIUM'} ? 'badge-medium' : 'badge-high')"
+                      th:text="${task.priority.displayName}">
+            </span>
+            </div>
             <a th:href="@{/tasks/{id}(id=${task.id})}" class="btn btn-secondary">View</a>
             <a th:href="@{/tasks/{id}/edit(id=${task.id})}" class="btn btn-secondary">Edit</a>
             <button class="btn btn-complete"

@@ -1,19 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // ── Hamburger menu toggle ───────────────────────
-    const menuToggle = document.querySelector('.menu-toggle');
-    const navLinks   = document.querySelector('.nav-links');
-
-    if (menuToggle && navLinks) {
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('open');
-
-            // Update aria-expanded for accessibility
-            const isOpen = navLinks.classList.contains('open');
-            menuToggle.setAttribute('aria-expanded', isOpen);
-        });
-    }
-
     document.querySelectorAll('.btn-complete').forEach(button => {
         button.addEventListener('click', async () => {
             const taskId  = button.getAttribute('data-task-id');
@@ -43,25 +29,27 @@ document.addEventListener('DOMContentLoaded', () => {
     // ── Character counter for description textarea ──────
 
     const textarea  = document.querySelector('textarea[name="description"]');
-
     const counter   = document.querySelector('#char-count');
-
     const MAX_CHARS = 500;
 
-
-
     if (textarea && counter) {
-
         textarea.addEventListener('input', () => {
-
             const remaining = MAX_CHARS - textarea.value.length;
-
             counter.textContent = `${remaining} characters remaining`;
-
             counter.style.color = remaining < 50 ? 'var(--color-danger)' : 'var(--color-muted)';
-
         });
+    }
 
+    const titleInput = document.querySelector('input[name="title"]');
+    const titleCounter = document.querySelector('#title-counter');
+    const MAX_TITLE_CHARS = 200;
+
+    if (titleInput && titleCounter) {
+        titleInput.addEventListener('input', () => {
+            const remaining = MAX_TITLE_CHARS - titleInput.value.length;
+            titleCounter.textContent = `${remaining} characters remaining`;
+            titleCounter.style.color = remaining < 50 ? 'var(--color-danger)' : 'var(--color-muted)';
+        });
     }
 
 

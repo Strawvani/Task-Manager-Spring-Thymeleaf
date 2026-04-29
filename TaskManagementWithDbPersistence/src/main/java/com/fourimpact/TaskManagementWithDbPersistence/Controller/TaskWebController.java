@@ -57,7 +57,7 @@ public class TaskWebController {
     }
 
 // Handle form submission
-    @PostMapping
+    @PutMapping
     public String createTask(@Valid @ModelAttribute Task task, BindingResult result, Model model) {
         if (result.hasErrors()){
             model.addAttribute("pageTitle", "New Task");

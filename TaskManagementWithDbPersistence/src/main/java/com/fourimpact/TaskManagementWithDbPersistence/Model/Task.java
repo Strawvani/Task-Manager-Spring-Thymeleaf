@@ -22,6 +22,7 @@ public class Task {
     private Long id;
 
     @NotBlank(message = "Title is required")
+    @Size(max = 200 , message = "Title must be less than 100 characters")
     @Column(name = "title",nullable = false,length = 200)
     private String title;
 

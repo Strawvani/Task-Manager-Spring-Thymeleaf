@@ -20,13 +20,14 @@
     <h2 th:text="${pageTitle}">New Task</h2>
 
     <form th:action="${task.id != null} ? @{/tasks/{id}(id=${task.id})} : @{/tasks}" th:object="${task}" method="post">
-        <input type="hidden" name="_method" th:value="${task.id != null} ? 'PUT' : 'POST'">
+        <input type="hidden" name="_method" value="PUT">
 
         <div class="form-group">
             <label for="title">Title</label>
             <input th:type="text" th:field="*{title}"
                    th:classappend="${#fields.hasErrors('title')} ? 'input-error' : ''"
                    placeholder="Enter task title">
+            <span id="title-counter"></span>
             <span class="error-text"
                   th:if="${#fields.hasErrors('title')}"
                   th:errors="*{title}">Error</span>
@@ -37,6 +38,7 @@
             <textarea th:field="*{description}" rows="3"
                       th:classappend="${#fields.hasErrors('description')} ? 'input-error' : ''"
             ></textarea>
+            <span id="char-count"></span>
             <span class="error-text"
                   th:if="${#fields.hasErrors('description')}"
                   th:errors="*{description}">Error</span>
@@ -69,7 +71,7 @@
 </main>
 
 <footer th:replace="~{fragments/footer :: footer}"></footer>
-
+<script th:src="@{/js/main.js}" defer></script>
 </body>
 
 </html>

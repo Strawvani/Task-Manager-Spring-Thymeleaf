@@ -150,7 +150,7 @@ public class TaskService {
         Task task = taskRepository.findById(Id).orElseThrow(
                 () -> new ResourceNotFoundException("task", Id)
         );
-        taskRepository.delete(task);
+        taskRepository.deleteById(task.getId());
     }
 
     // Helper

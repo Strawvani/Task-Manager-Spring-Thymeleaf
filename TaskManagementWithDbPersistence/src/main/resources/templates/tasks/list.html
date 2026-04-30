@@ -40,6 +40,9 @@
                     th:unless="${task.status.name() == 'DONE'}">
                 Mark Complete
             </button>
+            <form class="delete-form" th:action="@{/tasks/{id}(id=${task.id})}" th:method="delete">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
         </div>
     </div>
 </main>

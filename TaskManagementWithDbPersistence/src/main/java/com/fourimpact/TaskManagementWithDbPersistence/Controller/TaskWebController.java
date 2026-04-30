@@ -85,6 +85,12 @@ public class TaskWebController {
         return "redirect:/tasks";
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteTask(@PathVariable Long id) {
+        taskService.deleteTask(id);
+        return ResponseEntity.noContent().build();
+    }
+
     // JS
 
     @PatchMapping("/{id}/complete")

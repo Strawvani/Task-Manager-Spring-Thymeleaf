@@ -69,4 +69,44 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+
+// Delete Form
+    document.addEventListener('submit', function (e) {
+        const form = e.target;
+        if (!form.matches('.delete-form')) return;
+
+        // confirm before doing anything
+        if (!confirm('Are you sure you want to delete this task?')) {
+            e.preventDefault();
+            return; // stop here, don't send the request
+        }
+
+        e.preventDefault();
+
+        const card = form.closest('.task-card');
+        const url  = form.action;
+
+        fetch(url, {
+            method: 'POST',
+            body: new FormData(form)
+        })
+            .then(res => {
+                if (!res.ok) throw new Error('Delete failed');
+
+                card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                card.style.opacity    = '0';
+                card.style.transform  = 'scale(0.97)';
+                card.style.maxHeight  = card.offsetHeight + 'px';
+                card.style.overflow   = 'hidden';
+
+                setTimeout(() => {
+                    card.style.transition  += ', max-height 0.35s ease, margin 0.35s ease';
+                    card.style.maxHeight    = '0';
+                    card.style.marginBottom = '0';
+                }, 280);
+
+                setTimeout(() => card.remove(), 650);
+            })
+            .catch(err => console.error('Delete failed:', err));
+    });
 });

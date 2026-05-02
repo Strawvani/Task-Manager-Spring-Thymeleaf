@@ -594,3 +594,14 @@ main {
 .badge-medium   { background: #fff3cd; color: #856404; }
 .badge-low      { background: #d4edda; color: #155724; }
 
+[data-theme='dark'] {
+
+    --color-bg:    #121212;
+
+    --color-white: #1E1E1E;
+
+    --color-text:  #E0E0E0;
+
+    --color-muted: #BDBDBD;
+
+}

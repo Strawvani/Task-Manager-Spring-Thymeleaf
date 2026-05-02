@@ -75,10 +75,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const form = e.target;
         if (!form.matches('.delete-form')) return;
 
-        // confirm before doing anything
         if (!confirm('Are you sure you want to delete this task?')) {
             e.preventDefault();
-            return; // stop here, don't send the request
+            return;
         }
 
         e.preventDefault();
@@ -93,20 +92,42 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(res => {
                 if (!res.ok) throw new Error('Delete failed');
 
-                card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-                card.style.opacity    = '0';
-                card.style.transform  = 'scale(0.97)';
-                card.style.maxHeight  = card.offsetHeight + 'px';
-                card.style.overflow   = 'hidden';
+                if (card) {
+                    // on the task list page — animate and remove the card
+                    card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                    card.style.opacity    = '0';
+                    card.style.transform  = 'scale(0.97)';
+                    card.style.maxHeight  = card.offsetHeight + 'px';
+                    card.style.overflow   = 'hidden';
 
-                setTimeout(() => {
-                    card.style.transition  += ', max-height 0.35s ease, margin 0.35s ease';
-                    card.style.maxHeight    = '0';
-                    card.style.marginBottom = '0';
-                }, 280);
+                    setTimeout(() => {
+                        card.style.transition  += ', max-height 0.35s ease, margin 0.35s ease';
+                        card.style.maxHeight    = '0';
+                        card.style.marginBottom = '0';
+                    }, 280);
 
-                setTimeout(() => card.remove(), 650);
+                    setTimeout(() => card.remove(), 650);
+                } else {
+                    // on the edit page — just redirect to task list
+                    window.location.href = '/tasks';
+                }
             })
             .catch(err => console.error('Delete failed:', err));
     });
 });
+
+// Theme Toggle
+const themeToggle = document.getElementById('themeToggle');
+
+// Load saved preference
+const savedTheme = localStorage.getItem('theme') || 'light';
+document.documentElement.setAttribute('data-theme', savedTheme);
+
+if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+        const current = document.documentElement.getAttribute('data-theme');
+        const next    = current === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+    });
+}
